@@ -42,7 +42,7 @@ flowchart TD
 | Apex | `AgentFindCase` | Finds a case by number and returns the record for the prompt template |
 | Apex tests | `AgentCaseLookupTest`, `AgentFindCaseTest`, `AgentTestDataFactory` | 14 tests |
 | Flow | `Agen_Create_Case` | Checks the account exists before creating the case |
-| Prompt template | `Summarize_Case` | Flex template grounded on Case fields |
+| Prompt template | `SummarizeCase` | Flex template grounded on Case fields |
 | Knowledge | Data Library | PDFs in `data/policies` |
 | Permissions | `Case_Lookup_Agent_User` | Apex access, Account/Case read, Case create |
 
