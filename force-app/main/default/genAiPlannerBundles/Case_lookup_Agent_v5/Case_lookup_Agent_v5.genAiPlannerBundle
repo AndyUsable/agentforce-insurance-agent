@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Bluebonnet insurance assistant for employees: policy questions and customer case management.</description>
+    <localTopicLinks>
+        <genAiPluginName>Customer_Case_Lookup_16jgK000002D0Aj</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>GeneralFAQ_16jgK000002D0Aj</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>agent_router_16jgK000002D0Aj</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jgK000002D0Aj</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jgK000002D0Aj</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Customer_Case_Lookup_16jgK000002D0Aj</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles questions about a customer account&apos;s open support cases.</description>
+        <developerName>Customer_Case_Lookup_16jgK000002D0Aj</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000002RtYk</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000002RtYk</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Summarize_Case_179gK000002RtYk</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Open_Cases_for_Account_179gK000002RtYk</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Create_Support_Case_179gK000002RtYk</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Find_Case_by_Number_179gK000002RtYk</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Create_Support_Case_179gK000002RtYk</fullName>
+            <description>Creates a new support case for a customer account. Use only when the user explicitly asks to create or log a case. Requires account name, subject, and priority. Never invent values the user did not provide.</description>
+            <developerName>Create_Support_Case_179gK000002RtYk</developerName>
+            <invocationTarget>Agen_Create_Case</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Create_Support_Case</localDeveloperName>
+            <masterLabel>Create Support Case</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Summarize_Case_179gK000002RtYk</fullName>
+            <description>Summarizes a support case and drafts a customer reply. Requires the Case record returned by Find Case by Number. Use when the user asks to summarize a case or draft a reply.</description>
+            <developerName>Summarize_Case_179gK000002RtYk</developerName>
+            <invocationTarget>SummarizeCase</invocationTarget>
+            <invocationTargetType>generatePromptResponse</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Summarize_Case</localDeveloperName>
+            <masterLabel>Summarize Case</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Get_Open_Cases_for_Account_179gK000002RtYk</fullName>
+            <description>Returns open support cases</description>
+            <developerName>Get_Open_Cases_for_Account_179gK000002RtYk</developerName>
+            <invocationTarget>AgentCaseLookup</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Open_Cases_for_Account</localDeveloperName>
+            <masterLabel>Get Open Cases for Account</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>Find_Case_by_Number_179gK000002RtYk</fullName>
+            <description>Finds a support case by its case number. Use before summarizing a case or drafting a reply for a specific case. Requires the case number.</description>
+            <developerName>Find_Case_by_Number_179gK000002RtYk</developerName>
+            <invocationTarget>AgentFindCase</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Find_Case_by_Number</localDeveloperName>
+            <masterLabel>Find Case by Number</masterLabel>
+        </localActions>
+        <localDeveloperName>Customer_Case_Lookup</localDeveloperName>
+        <masterLabel>Customer Case Lookup</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>ambiguous_question_16jgK000002D0Aj</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jgK000002D0Aj</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000002RtYj</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000002RtYj</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>GeneralFAQ_16jgK000002D0Aj</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Answers questions about Bluebonnet insurance: coverage, deductibles, exclusions, rental car coverage, claims, appeals, cancellation, refunds, and payments. Also handles questions about insurance products or coverage types Bluebonnet may not offer.</description>
+        <developerName>GeneralFAQ_16jgK000002D0Aj</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000002RtYm</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000002RtYm</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>AnswerQuestionsWithKnowledge_179gK000002RtYm</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>AnswerQuestionsWithKnowledge_179gK000002RtYm</fullName>
+            <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: &apos;What is your return policy?&apos; &apos;How do I fix an issue?&apos; or &apos;What features does a product have?&apos;</description>
+            <developerName>AnswerQuestionsWithKnowledge_179gK000002RtYm</developerName>
+            <invocationTarget>streamKnowledgeSearch</invocationTarget>
+            <invocationTargetType>standardInvocableAction</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+            <masterLabel>Answer Questions with Knowledge</masterLabel>
+            <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+            <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+        </localActions>
+        <localDeveloperName>GeneralFAQ</localDeveloperName>
+        <masterLabel>General FAQ</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>agent_router_16jgK000002D0Aj</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate subagent based on user input</description>
+        <developerName>agent_router_16jgK000002D0Aj</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {!@variables.currentAppName}
+Current Object Name: {!@variables.currentObjectApiName}
+Current Page Type: {!@variables.currentPageType}
+Current Record ID: {!@variables.currentRecordId}
+
+{{state.AgentScriptInternal_agent_instructions}}</description>
+            <developerName>instruction0_179gK000002RtYl</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000002RtYl</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>agent_router</localDeveloperName>
+        <masterLabel>Agent Router</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jgK000002D0Aj</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jgK000002D0Aj</developerName>
+        <genAiPluginInstructions>
+            <description>You are an AI Agent.
+
+The user&apos;s current context is:
+Current App Name: {{state.currentAppName}}
+Current Object Name: {{state.currentObjectApiName}}
+Current Page Type: {{state.currentPageType}}
+Current Record ID: {{state.currentRecordId}}</description>
+            <developerName>instruction0_179gK000002RtYn</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179gK000002RtYn</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Case lookup Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>

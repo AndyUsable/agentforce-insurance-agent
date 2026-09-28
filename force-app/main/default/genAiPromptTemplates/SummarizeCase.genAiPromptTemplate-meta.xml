@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>yXR0la7kC2eDbIubWicNWuqghERG1Xhw6bjSZfRsnfM=_1</activeVersionIdentifier>
+    <description>Summarizes a support case and drafts a customer reply</description>
+    <developerName>SummarizeCase</developerName>
+    <masterLabel>Summarize Case</masterLabel>
+    <templateVersions>
+        <content>You are a support assistant for an insurance company.
+Summarize this support case for an internal employee, then draft a short, polite reply to the customer.
+
+Case number:{!$Input:caseRecord.CaseNumber}
+Subject:  {!$Input:caseRecord.Subject}
+Status:  {!$Input:caseRecord.Status}
+Priority:  {!$Input:caseRecord.Priority}
+Description: {!$Input:caseRecord.Description}
+
+Rules:
+- Use only the information above. Do not invent dates, amounts, discounts, or promises.
+- Do not promise a refund, credit, or fix. Say the team is reviewing it.
+- If the description is empty, say that in the summary.
+- Do not confirm or agree with the customer&apos;s claims. Describe them as what the customer reported.
+- Format exactly:
+Summary: (2-3 sentences)
+Suggested reply: (under 80 words)
+
+</content>
+        <inputs>
+            <apiName>caseRecord</apiName>
+            <definition>SOBJECT://Case</definition>
+            <masterLabel>caseRecord</masterLabel>
+            <referenceName>Input:caseRecord</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>yXR0la7kC2eDbIubWicNWuqghERG1Xhw6bjSZfRsnfM=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
